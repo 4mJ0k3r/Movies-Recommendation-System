@@ -25,7 +25,17 @@ The preprocessed `tags` are then vectorized using the **CountVectorizer** from s
 
 ## Recommendation
 
-The `recommend` function takes a movie title as input and returns the top 5 most similar movies based on the cosine similarity scores. It finds the index of the input movie in the dataframe, calculates the distances (similarity scores) with all other movies, sorts them in descending order, and returns the titles of the top 5 movies.
+The `recommend` function takes a movie title as input and returns the top 5 most similar movies based on the cosine similarity scores. It finds the index of the input movie in the dataframe, calculates the distances (similarity scores) with all other movies, sorts them in descending order, and returns the titles and poster paths of the top 5 movies.
+
+## Streamlit App
+
+The movie recommendation system is integrated into a Streamlit web application. The `app.py` file contains the code for the Streamlit app. Here's an overview of the app:
+
+- The app loads the processed movie data and similarity matrix from the pickle files.
+- It displays a dropdown menu for selecting a movie.
+- When the "Show Recommendation" button is clicked, it calls the `recommend` function to get the top 5 recommended movies.
+- The recommended movie titles and posters are displayed in a grid layout using Streamlit's `columns` feature.
+- The `fetch_poster` function is used to retrieve the movie poster images from TMDb API using the movie ID [[1]].
 
 ## Dependencies
 
@@ -35,16 +45,17 @@ The following libraries are used in this project:
 - Pandas
 - NLTK (Natural Language Toolkit)
 - scikit-learn
+- Streamlit
+- requests
 
 Make sure to install these dependencies before running the code.
 
 ## Usage
 
-1. Ensure that the required CSV files (`tmdb_5000_movies.csv` and `tmdb_5000_credits.csv`) are in the same directory as the code file.
-2. Run the code in a Python environment with the necessary dependencies installed.
-3. The processed dataframe and similarity matrix are saved as pickle files (`movie_dict.pkl` and `similarity.pkl`) for future use.
-4. Use the `recommend` function by passing a movie title as a string to get recommendations.
+1. Ensure that the required CSV files (`tmdb_5000_movies.csv` and `tmdb_5000_credits.csv`) are in the same directory as the code files.
+2. Run the preprocessing code to generate the pickle files (`movie_dict.pkl` and `similarity.pkl`).
+3. Run the Streamlit app using the command: `streamlit run app.py`.
+4. Access the app in your web browser at the provided URL.
+5. Select a movie from the dropdown menu and click the "Show Recommendation" button to see the top 5 recommended movies.
 
-Example:
-```python
-recommend('Batman Begins')
+Feel free to explore and modify the code to suit your needs!
